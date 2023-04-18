@@ -26,14 +26,31 @@ const TodoList = ({ todos, setTodos }: Props) => {
       todos which represent the todos array that we are initially mapping, and
       we are also passing the setTodos hook, to be able to setTodos in the
       component of a sinleTodo when we edit, mark as done, or delete.  */}
-      {todos.map((todo) => (
-        <SingleTodo
-          todo={todo}
-          key={todo.id}
-          todos={todos}
-          setTodos={setTodos}
-        />
-      ))}
+
+      <div className="container">
+        <div className="todos">
+          <span className="todos__heading">Active Tasks</span>
+          {todos.map((todo) => (
+            <SingleTodo
+              todo={todo}
+              key={todo.id}
+              todos={todos}
+              setTodos={setTodos}
+            />
+          ))}
+        </div>
+        <div className="todos">
+          <span className="todos__heading">Completed Tasks</span>
+          {todos.map((todo) => (
+            <SingleTodo
+              todo={todo}
+              key={todo.id}
+              todos={todos}
+              setTodos={setTodos}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
