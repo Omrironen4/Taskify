@@ -13,7 +13,7 @@ interface Props {
 
 const TodoList = ({ todos, setTodos }: Props) => {
   return (
-    <div className="todos">
+    <div className="container">
       {/*   notice what is happening here: we are taking the todos array, which
       holds our todo model objects as each array item. Each object will
       represent the Todo model as we know. So now for each item in the array,
@@ -26,14 +26,28 @@ const TodoList = ({ todos, setTodos }: Props) => {
       todos which represent the todos array that we are initially mapping, and
       we are also passing the setTodos hook, to be able to setTodos in the
       component of a sinleTodo when we edit, mark as done, or delete.  */}
-      {todos.map((todo) => (
-        <SingleTodo
-          todo={todo}
-          key={todo.id}
-          todos={todos}
-          setTodos={setTodos}
-        />
-      ))}
+      <div className="todos">
+        <span className="todos__heading">Active Tasks</span>
+        {todos.map((todo) => (
+          <SingleTodo
+            todo={todo}
+            key={todo.id}
+            todos={todos}
+            setTodos={setTodos}
+          />
+        ))}
+      </div>
+      <div className="todos remove">
+        <span className="todos__heading">Completed Tasks</span>
+        {todos.map((todo) => (
+          <SingleTodo
+            todo={todo}
+            key={todo.id}
+            todos={todos}
+            setTodos={setTodos}
+          />
+        ))}
+      </div>
     </div>
   );
 };
