@@ -1,9 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Todo } from "../model";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
-import TodoList from "./TodoList";
 import { Draggable } from "react-beautiful-dnd";
 
 // type definition of our SingleTodo props that we gave it in TodoList.tsx
@@ -14,8 +12,6 @@ type Props = {
   setTodos: React.Dispatch<React.SetStateAction<Array<Todo>>>;
 };
 
-// left at 1:01:57 in the youtube video!
-// Review this SingleTodo component, just finished adding the setEdit span, along with the form onSubmit call back to the handleEdit function. It works well!
 export const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
   const [edit, setEdit] = useState<boolean>(false);
   const [editTodo, setEditTodo] = useState<string>(todo.todo);
@@ -57,9 +53,9 @@ export const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
 
   return (
     <Draggable draggableId={todo.id.toString()} index={index}>
-      {(provided) => (
+      {(provided, snapshot) => (
         <form
-          className="todos__single"
+          className={`todos__single ${snapshot.isDragging ? "drag" : ""}`}
           onSubmit={(e) => handleEdit(e, todo.id)}
           {...provided.draggableProps}
           {...provided.dragHandleProps}

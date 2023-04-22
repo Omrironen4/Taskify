@@ -8,19 +8,19 @@ import { Droppable } from "react-beautiful-dnd";
 interface Props {
   todos: Todo[];
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
-  completedTodos: Todo[];
+  CompletedTodos: Todo[];
   setCompletedTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
 // we are making our list of todo items, in which we are mapping the todos array of objects.
 
-const TodoList = ({ todos, setCompletedTodos }: Props) => {
+const TodoList = ({ todos, CompletedTodos, setCompletedTodos }: Props) => {
   return (
     <div className="container">
-      <Droppable droppableId="Todoslist">
-        {(provided) => (
+      <Droppable droppableId="TodosList">
+        {(provided, snapshot) => (
           <div
-            className="todos"
+            className={`todos ${snapshot.isDraggingOver ? "dragactive" : ""}`}
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
@@ -34,26 +34,30 @@ const TodoList = ({ todos, setCompletedTodos }: Props) => {
                 setTodos={setCompletedTodos}
               />
             ))}
+            {provided.placeholder}
           </div>
         )}
       </Droppable>
       <Droppable droppableId="TodosRemove">
-        {(provided) => (
+        {(provided, snapshot) => (
           <div
-            className="todos remove"
+            className={`todos ${
+              snapshot.isDraggingOver ? "dragcomplete" : "remove"
+            }`}
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
             <span className="todos__heading">Completed Tasks</span>
-            {todos.map((todo, index) => (
+            {CompletedTodos.map((todo, index) => (
               <SingleTodo
                 index={index}
                 todo={todo}
                 key={todo.id}
-                todos={todos}
+                todos={CompletedTodos}
                 setTodos={setCompletedTodos}
               />
             ))}
+            {provided.placeholder}
           </div>
         )}
       </Droppable>
