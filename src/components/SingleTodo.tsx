@@ -42,7 +42,6 @@ export const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
       todos.map((todo) => (todo.id === id ? { ...todo, todo: editTodo } : todo))
     );
     setEdit(false);
-    console.log(todos)
   };
 
   //here we are making a reference to the input element of this component
