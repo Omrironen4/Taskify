@@ -42,6 +42,7 @@ export const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
       todos.map((todo) => (todo.id === id ? { ...todo, todo: editTodo } : todo))
     );
     setEdit(false);
+    console.log(todos)
   };
 
   //here we are making a reference to the input element of this component
@@ -60,16 +61,7 @@ export const SingleTodo = ({ index, todo, todos, setTodos }: Props) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
-        >
-          {/* // so now that our form is built, we are giving it some logic for the
-            interactivity of the icons of edit, done, delete. It starts off with the
-            edit, and if we click the edit icon it will make it truthy therefore we return an input with the value of editTodo which is initially our todo.todo value.. and as we begin to type, the onChange will captrue the value as we type and will set the editTodo to the typed value.
-            
-            // now when the edit is false, which is whenever we don't click the edit icon..
-            then it will jump to the todo.isDone part. 
-            //if we click on the checkmark in the span at the bottom, it will call the handleDone function which inverses the boolean for the todo.isDone. Since the todo.isDone is initially false, then we inverse it to true which lets us run the next section. 
-            In this section, if todo is done then we will displau a striked out string of todo.todo. Else we will display todo.todo in a regular span tag. //
-          */}
+         >
           {edit ? (
             <input
               ref={inputRef}
