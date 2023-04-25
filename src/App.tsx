@@ -82,7 +82,7 @@ const App: React.FC = () => {
     // we wrap our application with the DragnDrop, passing it the onDragEnd functionality.
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="App">
-        <span className="heading">Taskify</span>
+        <span className="heading">Taskify!</span>
         {/* the input field component lets us type a new todo, and place it within the active task array(the todos array).  */}
         <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
         <TodoList
